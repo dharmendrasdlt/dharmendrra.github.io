@@ -762,6 +762,86 @@ main {
     display: inline-block;
 }
 
+/* Project Spotlight */
+.spotlight {
+    margin-top: var(--spacing-2xl);
+    padding-top: var(--spacing-2xl);
+    border-top: 1px solid var(--color-border);
+}
+
+.spotlight-head {
+    max-width: 720px;
+    margin-bottom: var(--spacing-xl);
+}
+
+.spotlight-eyebrow {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-primary);
+}
+
+.spotlight-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: var(--spacing-sm) 0 var(--spacing-md) 0;
+}
+
+.spotlight-lead {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    margin: 0;
+}
+
+.spotlight-shots {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-xl);
+}
+
+.spotlight-figure {
+    margin: 0;
+}
+
+.spotlight-figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.spotlight-figure:hover img {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+}
+
+.spotlight-figure figcaption {
+    margin-top: var(--spacing-md);
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    text-align: center;
+}
+
+.spotlight-cta {
+    display: inline-block;
+    margin-top: var(--spacing-xl);
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--color-primary);
+    transition: all var(--transition-fast);
+}
+
+.spotlight-cta:hover {
+    color: var(--color-accent);
+    transform: translateX(4px);
+}
+
 @media (max-width: 768px) {
     .projects-grid {
         grid-template-columns: 1fr;
@@ -770,6 +850,11 @@ main {
 
     .projects {
         padding: var(--spacing-xl) 0;
+    }
+
+    .spotlight-shots {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
     }
 }
 
