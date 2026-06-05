@@ -43,6 +43,7 @@
                     <nav class="nav-links">
                         <a href="#about" class="nav-link">About</a>
                         <a href="#experience" class="nav-link">Experience</a>
+                        <a href="#impact" class="nav-link">Impact</a>
                         <a href="#skills" class="nav-link">Skills</a>
                         <a href="#projects" class="nav-link">Projects</a>
                         <a href="#contact" class="nav-link">Contact</a>
@@ -95,6 +96,10 @@
                                 <div class="stat-item">
                                     <div class="stat-value">14+</div>
                                     <div class="stat-label">Years Experience</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">350M+</div>
+                                    <div class="stat-label">Emails / Day</div>
                                 </div>
                                 <div class="stat-item">
                                     <div class="stat-value">1M+</div>
@@ -173,12 +178,74 @@
                 </div>
             </section>
 
+            <!-- Selected Impact Section -->
+            <section id="impact" class="impact">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title">Selected Impact</h2>
+                        <span class="section-number">03</span>
+                    </div>
+                    <div class="impact-grid">
+                        <div class="impact-card">
+                            <div class="impact-metric">350M+<span class="impact-metric__suffix">emails / day</span></div>
+                            <h3 class="impact-card__title">Re-architected email at scale</h3>
+                            <p class="impact-card__desc">Migrated email sending from PHP to Go and moved it onto an event-driven producer/consumer pipeline — scaling the platform to process 350M+ emails per day with horizontal scalability and headroom for peak traffic.</p>
+                        </div>
+                        <div class="impact-card">
+                            <div class="impact-metric">~20×<span class="impact-metric__suffix">SMS throughput</span></div>
+                            <h3 class="impact-card__title">Contact-level Kafka fan-out</h3>
+                            <p class="impact-card__desc">Re-architected a marketing SMS pipeline from campaign-level to contact-level processing (~28 → ~600 msg/s), cutting a 500K-recipient campaign from hours to under 5 minutes — with exactly-once processing and sub-5-minute feature-flag rollback.</p>
+                        </div>
+                        <div class="impact-card">
+                            <div class="impact-metric">Agentic AI<span class="impact-metric__suffix">+ RAG</span></div>
+                            <h3 class="impact-card__title">AI-native engineering</h3>
+                            <p class="impact-card__desc">Build with agentic AI and retrieval: shipped a ReAct reasoning engine and a multi-backend RAG system, and use MCP-based agent tooling with verifier-gated planning to accelerate migrations and incident investigation.</p>
+                        </div>
+                        <div class="impact-card">
+                            <div class="impact-metric">2 tribes<span class="impact-metric__suffix">Tech Lead / EM</span></div>
+                            <h3 class="impact-card__title">Engineering leadership</h3>
+                            <p class="impact-card__desc">As Tech Lead / Engineering Manager across messaging-platform squads, authored RFCs/ADRs before implementation, scoped epics into shippable work, mentored engineers, and owned feature-flag release governance.</p>
+                        </div>
+                    </div>
+
+                    <div class="impact-highlights">
+                        <div class="impact-col">
+                            <h4 class="impact-col__title">Architecture &amp; Scale</h4>
+                            <ul>
+                                <li>Architected and led the build of an entirely new messaging channel end-to-end — Kafka topic design, 3-layer retry (in-process → cloud tasks → DLQ), template rendering, pricing, and observability — from infra provisioning to production.</li>
+                                <li>Ran a zero-downtime sync→async migration via staged feature-flag rollout, then retired the legacy path across services.</li>
+                                <li>Standardized context propagation across 7 microservices; led a multi-cluster Kubernetes migration with ArgoCD lifecycle management and cluster decommissioning.</li>
+                                <li>Used a dual-write pattern for zero-downtime data-store migrations.</li>
+                            </ul>
+                        </div>
+                        <div class="impact-col">
+                            <h4 class="impact-col__title">Reliability &amp; Operations</h4>
+                            <ul>
+                                <li>Resolved a platform-wide outage — every authenticated route failing — by root-causing a middleware-ordering bug, then added tracing to prevent recurrence.</li>
+                                <li>Built observability: per-call tracing, structured logging, top-client dashboards, and APM noise reduction (business outcomes ≠ system errors).</li>
+                                <li>Shipped anti-abuse controls that stopped carrier-level domain blocking and protected sender reputation in key markets.</li>
+                                <li>Drove 10+ security-vulnerability remediations across Go and Node.js, plus a multi-year initiative to reduce L3 support toil.</li>
+                            </ul>
+                        </div>
+                        <div class="impact-col">
+                            <h4 class="impact-col__title">Leadership &amp; Delivery</h4>
+                            <ul>
+                                <li>Tech Lead / Engineering Manager across two engineering tribes; technically led a team building a new channel from scratch.</li>
+                                <li>Authored RFCs/ADRs before implementation, scoped epics into shippable work, and ran sprint planning with consistent on-target delivery.</li>
+                                <li>Treated code review as first-class tracked work; mentored engineers and championed team recognition.</li>
+                                <li>Unblocked an enterprise deal with a backward-compatible public-API extension and cross-team SDK coordination.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- Skills & Expertise Section -->
             <section id="skills" class="skills">
                 <div class="container">
                     <div class="section-header">
                         <h2 class="section-title">Skills &amp; Expertise</h2>
-                        <span class="section-number">03</span>
+                        <span class="section-number">04</span>
                     </div>
 
                     <div class="skills-grid">
@@ -288,7 +355,7 @@
                 <div class="container">
                     <div class="section-header">
                         <h2 class="section-title">Projects</h2>
-                        <span class="section-number">04</span>
+                        <span class="section-number">05</span>
                     </div>
                     <div class="projects-grid">
                         <!-- Agentic AI -->
@@ -390,7 +457,7 @@
                 <div class="container">
                     <div class="section-header">
                         <h2 class="section-title">Education</h2>
-                        <span class="section-number">05</span>
+                        <span class="section-number">06</span>
                     </div>
 
                     <div class="education-card">
