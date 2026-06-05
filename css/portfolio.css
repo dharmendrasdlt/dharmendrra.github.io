@@ -251,26 +251,119 @@ main {
     background: var(--color-bg-light);
 }
 
-.about-content {
-    max-width: 700px;
+.about-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--color-border);
+    padding-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-2xl);
 }
 
 .section-title {
     font-size: 2rem;
-    margin-bottom: var(--spacing-lg);
     letter-spacing: -0.01em;
+    margin: 0;
+}
+
+.section-number {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+.about-content {
+    max-width: 900px;
+}
+
+.about-text-block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
 }
 
 .about-text {
     font-size: 1.1rem;
     line-height: 1.7;
     color: var(--color-text);
-    margin-bottom: var(--spacing-lg);
 }
 
 .highlight {
     color: var(--color-primary);
     font-weight: 600;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg) 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1;
+    margin-bottom: var(--spacing-sm);
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+/* Skills Section */
+.skills-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.skills-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0;
+}
+
+.skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+.skill-tag {
+    display: inline-block;
+    background: white;
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all var(--transition-fast);
+}
+
+.skill-tag:hover {
+    border-color: var(--color-primary);
+    background: var(--color-primary);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Roles Section */
+.roles-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
 }
 
 .role-tags {
@@ -300,12 +393,30 @@ main {
         padding: var(--spacing-xl) 0;
     }
 
+    .about-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-md);
+    }
+
     .section-title {
         font-size: 1.5rem;
     }
 
+    .section-number {
+        font-size: 1.25rem;
+    }
+
     .about-text {
         font-size: 1rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .stat-value {
+        font-size: 1.5rem;
     }
 }
 
