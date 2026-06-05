@@ -802,6 +802,18 @@ main {
     gap: var(--spacing-xl);
 }
 
+.spotlight-shots--single {
+    grid-template-columns: 1fr;
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.spotlight + .spotlight {
+    margin-top: var(--spacing-2xl);
+    padding-top: var(--spacing-2xl);
+    border-top: 1px solid var(--color-border);
+}
+
 .spotlight-figure {
     margin: 0;
 }
