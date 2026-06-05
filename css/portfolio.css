@@ -181,27 +181,26 @@ main {
 .hero-collage {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-md);
+    gap: var(--spacing-sm);
 }
 
 .hero-collage__col {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-md);
+    gap: var(--spacing-sm);
 }
 
 .hero-collage__col--offset {
-    margin-top: var(--spacing-2xl);
+    margin-top: var(--spacing-xl);
 }
 
 .hero-collage img {
     width: 100%;
-    aspect-ratio: 16 / 11;
-    object-fit: cover;
-    object-position: top center;
-    border-radius: 10px;
+    height: auto;
+    display: block;
+    border-radius: 8px;
     border: 1px solid var(--color-border);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
     transition: transform var(--transition-base), box-shadow var(--transition-base);
 }
 
