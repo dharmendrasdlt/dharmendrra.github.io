@@ -404,7 +404,6 @@ main {
 
 .timeline {
     margin-top: var(--spacing-lg);
-    padding-left: var(--spacing-xl);
     position: relative;
 }
 
@@ -416,11 +415,11 @@ main {
     background-color: var(--color-border);
     position: absolute;
     top: 8px;
-    left: 6px;
+    left: 5px;
 }
 
 .timeline__block {
-    padding-left: var(--spacing-lg);
+    padding-left: var(--spacing-xl);
     padding-bottom: var(--spacing-xl);
     position: relative;
 }
@@ -435,6 +434,7 @@ main {
     width: 12px;
     border-radius: 50%;
     background-color: var(--color-primary);
+    border: 2px solid var(--color-bg-light);
     position: absolute;
     top: 6px;
     left: 0;
@@ -517,24 +517,20 @@ main {
         font-size: 1.5rem;
     }
 
-    .timeline {
-        padding-left: var(--spacing-lg);
-    }
-
     .timeline::before {
         left: 4px;
         height: calc(100% - 8px);
     }
 
     .timeline__block {
-        padding-left: var(--spacing-md);
+        padding-left: var(--spacing-lg);
         padding-bottom: var(--spacing-lg);
     }
 
     .timeline__bullet {
         height: 10px;
         width: 10px;
-        left: -2px;
+        left: 0;
         top: 5px;
     }
 
