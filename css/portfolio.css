@@ -404,54 +404,67 @@ main {
 
 .timeline-items {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-xl);
+    padding-left: var(--spacing-lg);
 }
 
 .timeline-line {
     position: absolute;
-    left: 20px;
+    left: 7px;
     top: 0;
-    bottom: 0;
+    bottom: -var(--spacing-lg);
     width: 2px;
     background: var(--color-border);
 }
 
 .timeline-item {
     position: relative;
-    padding-left: var(--spacing-xl);
+    margin-bottom: var(--spacing-2xl);
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: var(--spacing-lg);
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
 }
 
 .timeline-year {
     font-size: 0.9rem;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--color-text);
-    margin-bottom: var(--spacing-xs);
+    padding-top: 4px;
 }
 
 .timeline-marker {
     position: absolute;
-    left: 12px;
-    top: 6px;
-    width: 16px;
-    height: 16px;
+    left: -19px;
+    top: 2px;
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
-    border: 3px solid var(--color-border);
+    border: 2px solid var(--color-border);
     background: white;
-    transition: all var(--transition-fast);
+    transition: all var(--transition-base);
+    cursor: pointer;
 }
 
 .timeline-item:first-child .timeline-marker {
     border-color: var(--color-primary);
     background: var(--color-primary);
-    box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.1);
+    box-shadow: 0 0 0 6px rgba(26, 115, 232, 0.1);
+}
+
+.timeline-marker-inner {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
 }
 
 .timeline-content {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-sm);
+    padding-top: 2px;
 }
 
 .timeline-company {
@@ -477,7 +490,8 @@ main {
 
 .timeline-item:hover .timeline-marker {
     border-color: var(--color-primary);
-    transform: scale(1.2);
+    transform: scale(1.15);
+    box-shadow: 0 0 0 8px rgba(26, 115, 232, 0.1);
 }
 
 @media (max-width: 768px) {
@@ -511,35 +525,47 @@ main {
         font-size: 1.5rem;
     }
 
-    .timeline-line {
-        left: 15px;
+    .timeline-items {
+        padding-left: var(--spacing-md);
     }
 
-    .timeline-marker {
-        left: 8px;
-        width: 14px;
-        height: 14px;
-        border-width: 2px;
+    .timeline-line {
+        left: 5px;
     }
 
     .timeline-item {
-        padding-left: var(--spacing-lg);
+        grid-template-columns: 80px 1fr;
+        gap: var(--spacing-md);
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .timeline-marker {
+        left: -17px;
+        width: 16px;
+        height: 16px;
+        border-width: 2px;
+    }
+
+    .timeline-item:first-child .timeline-marker {
+        box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.1);
     }
 
     .timeline-year {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
+        font-weight: 700;
     }
 
     .timeline-company {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
     }
 
     .timeline-role {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
     }
 
     .timeline-description {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
+        line-height: 1.5;
     }
 }
 
