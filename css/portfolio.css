@@ -490,7 +490,7 @@ main {
 .impact-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-lg);
+    gap: var(--spacing-md);
 }
 
 .impact-card {
@@ -498,7 +498,7 @@ main {
     border: 1px solid var(--color-border);
     border-left: 4px solid var(--color-primary);
     border-radius: 8px;
-    padding: var(--spacing-xl);
+    padding: var(--spacing-md) var(--spacing-lg);
     transition: all var(--transition-base);
 }
 
@@ -531,7 +531,7 @@ main {
     font-size: 1.05rem;
     font-weight: 600;
     color: var(--color-text);
-    margin: var(--spacing-md) 0 var(--spacing-sm) 0;
+    margin: var(--spacing-sm) 0 var(--spacing-xs) 0;
 }
 
 .impact-card__desc {
