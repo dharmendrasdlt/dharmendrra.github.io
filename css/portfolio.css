@@ -283,8 +283,8 @@ main {
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid var(--color-border);
-    padding-bottom: var(--spacing-lg);
-    margin-bottom: var(--spacing-2xl);
+    padding-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
 }
 
 /* About Section */
@@ -312,7 +312,7 @@ main {
 .about-text-block {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-xl);
+    gap: var(--spacing-lg);
 }
 
 .about-text {
@@ -331,7 +331,7 @@ main {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: var(--spacing-lg);
-    padding: var(--spacing-lg) 0;
+    padding: var(--spacing-md) 0;
     border-bottom: 1px solid var(--color-border);
 }
 
@@ -344,7 +344,7 @@ main {
     font-weight: 700;
     color: var(--color-primary);
     line-height: 1;
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
 }
 
 .stat-label {

@@ -1,0 +1,4 @@
+# Private / local-only — never publish
+interview-notes.md
+external-export/
+.DS_Store
