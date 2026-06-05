@@ -388,6 +388,98 @@ main {
     transform: translateY(-2px);
 }
 
+/* Experience Timeline */
+.experience-timeline {
+    margin-top: var(--spacing-2xl);
+    padding-top: var(--spacing-2xl);
+    border-top: 1px solid var(--color-border);
+}
+
+.timeline-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0 0 var(--spacing-lg) 0;
+}
+
+.timeline-items {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+}
+
+.timeline-line {
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--color-border);
+}
+
+.timeline-item {
+    position: relative;
+    padding-left: var(--spacing-xl);
+}
+
+.timeline-year {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-xs);
+}
+
+.timeline-marker {
+    position: absolute;
+    left: 12px;
+    top: 6px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 3px solid var(--color-border);
+    background: white;
+    transition: all var(--transition-fast);
+}
+
+.timeline-item:first-child .timeline-marker {
+    border-color: var(--color-primary);
+    background: var(--color-primary);
+    box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.1);
+}
+
+.timeline-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.timeline-company {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0;
+}
+
+.timeline-role {
+    font-size: 0.9rem;
+    color: var(--color-primary);
+    font-weight: 500;
+    margin: 0;
+}
+
+.timeline-description {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    margin: 0;
+}
+
+.timeline-item:hover .timeline-marker {
+    border-color: var(--color-primary);
+    transform: scale(1.2);
+}
+
 @media (max-width: 768px) {
     .about {
         padding: var(--spacing-xl) 0;
@@ -417,6 +509,37 @@ main {
 
     .stat-value {
         font-size: 1.5rem;
+    }
+
+    .timeline-line {
+        left: 15px;
+    }
+
+    .timeline-marker {
+        left: 8px;
+        width: 14px;
+        height: 14px;
+        border-width: 2px;
+    }
+
+    .timeline-item {
+        padding-left: var(--spacing-lg);
+    }
+
+    .timeline-year {
+        font-size: 0.85rem;
+    }
+
+    .timeline-company {
+        font-size: 0.95rem;
+    }
+
+    .timeline-role {
+        font-size: 0.85rem;
+    }
+
+    .timeline-description {
+        font-size: 0.85rem;
     }
 }
 
