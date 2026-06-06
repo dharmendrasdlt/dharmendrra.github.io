@@ -454,6 +454,22 @@ main {
     font-weight: 500;
 }
 
+.stats-note {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.stats-note a {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.stats-note a:hover {
+    color: var(--color-accent);
+}
+
 .subsection-title {
     font-size: 1rem;
     font-weight: 600;
