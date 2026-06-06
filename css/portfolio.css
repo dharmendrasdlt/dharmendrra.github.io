@@ -1262,6 +1262,34 @@ main {
 
 .lightbox__close:hover { background: rgba(255, 255, 255, 0.28); transform: scale(1.05); }
 
+.lightbox__nav {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.15s ease;
+    z-index: 1;
+}
+
+.lightbox__nav:hover { background: rgba(255, 255, 255, 0.28); }
+.lightbox__nav--prev { left: 22px; }
+.lightbox__nav--next { right: 22px; }
+
+@media (max-width: 600px) {
+    .lightbox__nav { width: 40px; height: 40px; }
+    .lightbox__nav--prev { left: 10px; }
+    .lightbox__nav--next { right: 10px; }
+}
+
 .lightbox__hint {
     position: fixed;
     bottom: 18px;
