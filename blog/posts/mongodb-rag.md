@@ -48,6 +48,29 @@ Open `localhost:8080`, ask `"What are the remote work rules?"`, pick a format, a
 
 ## What works, and when to graduate
 
+Here's the part that's worth seeing, because it demystifies the whole thing. Without a vector index, "find the closest document" is just: pull every document and score it in application code.
+
+```go
+// Retrieval, MongoDB edition: scan the collection, score in Go.
+cursor, _ := coll.Find(ctx, bson.M{}) // <- the WHOLE collection
+var bestContent string
+var bestScore float32 = -1
+for cursor.Next(ctx) {
+    var doc Document
+    cursor.Decode(&doc)
+
+    var score float32
+    for i := 0; i < len(vector) && i < len(doc.Embedding); i++ {
+        score += vector[i] * doc.Embedding[i] // dot product
+    }
+    if score > bestScore {
+        bestScore, bestContent = score, doc.Content
+    }
+}
+```
+
+That's similarity search with the magic removed: a dot product per document, computed in a loop. For a few hundred docs it's instant, and it's the clearest possible way to understand what a vector database does for you. It's also exactly *why* you'll outgrow it — this is `O(n)` per query and recomputes every score every time. A dedicated index turns that linear scan into sublinear approximate nearest-neighbour.
+
 This setup is genuinely good for: prototypes, internal tools, small/medium corpora, and learning how the pieces fit before you add infrastructure.
 
 You've outgrown it when:

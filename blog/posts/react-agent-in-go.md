@@ -21,6 +21,39 @@ It has three tools:
 
 That third one is the interesting one, and I'll come back to it.
 
+Stripped of logging, the whole loop is about forty lines of Go. Call the model, check for a `Final Answer:`, and otherwise regex out the `Action` and `Action Input`, run the tool, and feed the result back as an `Observation`:
+
+```go
+for state.Steps < cfg.MaxSteps {
+    state.Steps++
+    response, err := llmCaller.Call(systemPrompt, strings.Join(messages, "\n\n"))
+    if err != nil {
+        return "", err
+    }
+    messages = append(messages, response)
+
+    // Done?
+    if strings.Contains(response, "Final Answer:") {
+        parts := strings.Split(response, "Final Answer:")
+        state.Answer = strings.TrimSpace(parts[1])
+        break
+    }
+
+    // Otherwise: parse Action + Action Input, run the tool, observe.
+    action := actionRe.FindStringSubmatch(response) // Action:\s*(\w+)
+    input := inputRe.FindStringSubmatch(response)   // Action Input:\s*(.+)
+    result, err := toolMgr.Execute(action[1], strings.TrimSpace(input[1]))
+
+    observation := result
+    if err != nil {
+        observation = fmt.Sprintf("Error: %v", err) // feed errors back, don't crash
+    }
+    messages = append(messages, "Observation: "+observation)
+}
+```
+
+Two details matter more than they look. The conversation is just a growing slice of strings that gets re-joined on every turn — the "memory" is the transcript. And tool errors aren't fatal: they're handed back to the model *as an observation*, so it can read "Error: invalid JSON" and try again instead of the whole request falling over.
+
 ## A self-describing tool registry
 
 The thing I'm most happy with isn't the loop — it's how tools describe themselves. Every tool owns its **complete** definition through a `Schema()` method that returns the standard JSON tool shape used by OpenAI, Anthropic, and MCP alike:

@@ -27,6 +27,27 @@ Storing the raw text *alongside* the vector in step 2 is what lets retrieval bui
 
 The retrieval step is where this stops being a textbook example. ChromaDB supports a `where_document` filter — a keyword constraint applied *during* the similarity search. Short, single-token queries route through that filter so a literal term is actually matched, instead of being smeared across the embedding space. Abstract, sentence-length queries go straight to dense semantic search. And when a filtered search comes back empty, it falls back to pure vector similarity rather than returning nothing.
 
+The mechanics are a handful of lines. For a single-token query, constrain the similarity search with `where_document`; if that constraint matches nothing, drop it and rerun as pure vector search:
+
+```go
+reqPayload := map[string]any{
+    "query_embeddings": [][]float32{queryVector},
+    "n_results":        2,
+}
+// Single-token query → only consider docs that literally contain it.
+if !strings.Contains(strings.TrimSpace(rawQuery), " ") {
+    reqPayload["where_document"] = map[string]any{"$contains": rawQuery}
+}
+
+// ... POST /query ...
+
+// Fallback safety: filter matched nothing → drop it and rerun semantically.
+if len(result.Documents) == 0 || len(result.Documents[0]) == 0 {
+    delete(reqPayload, "where_document")
+    // ... rerun the query without the constraint ...
+}
+```
+
 If that pattern sounds familiar, it's the same document-aware routing idea applied with Chroma's own primitive (`where_document`) instead of Qdrant's payload filter. The lesson generalizes across vector stores: **inspect the query, pick the right tool, keep a fallback.**
 
 ## Three output formats from one pipeline

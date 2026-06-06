@@ -80,7 +80,20 @@ The retrieval service answers questions in four observable steps, **each of whic
 3. **Build a grounded RAG prompt** — a system + user prompt assembled only from the retrieved matches.
 4. **Stream generation** token-by-token from Anthropic Claude *or* local Ollama.
 
-The codebase keeps each of these in its own single-responsibility file (`embedder.go`, `pinecone.go`, `prompt.go`, `streamer.go`, `server.go`). It reads almost like the diagram — which is the point.
+The vector search itself is small, and one flag on it does a lot of work:
+
+```go
+reqBody := pineconeQueryRequest{
+    Vector:          vector,
+    TopK:            p.TopK,        // default 3 — how many chunks feed the prompt
+    IncludeMetadata: true,          // bring back text_content + source_file_id
+}
+// POST {host}/query  with header  Api-Key: <key>  → matches[]
+```
+
+`TopK` is the dial between "not enough context" and "drowning the model in noise" — three is a sane default. `IncludeMetadata: true` is the line that makes answers *traceable*: each match comes back carrying the chunk's raw text **and** the GridFS ObjectID, so the prompt can be grounded and every cited source can be walked back to its original PDF.
+
+The codebase keeps each step in its own single-responsibility file (`embedder.go`, `pinecone.go`, `prompt.go`, `streamer.go`, `server.go`). It reads almost like the diagram — which is the point.
 
 ## Pluggable generation, one flag
 

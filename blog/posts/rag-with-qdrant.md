@@ -25,6 +25,29 @@ When a query arrives, the retrieval server doesn't just blindly vector-search. I
 
 Two lines do the heavy lifting. The first says: *if the user typed something that looks like a keyword, trust the keyword* — a payload filter on `content` will find the literal term far more reliably than fuzzy vector distance. The second is the safety net: *if that filter found nothing, don't return an empty answer — fall back to semantic search.*
 
+In code, the entire trick is about a dozen lines. Detect a single-token query, attach a Qdrant payload text filter on the `content` field, and — if it comes back empty — drop the filter and search again:
+
+```go
+// One space? treat it as a phrase. No spaces? it's a keyword.
+useKeywordFilter := !strings.Contains(strings.TrimSpace(rawQuery), " ")
+if useKeywordFilter {
+    reqPayload["filter"] = map[string]any{
+        "must": []map[string]any{{
+            "key":   "content",
+            "match": map[string]any{"text": rawQuery},
+        }},
+    }
+}
+
+result, _ := q.search(collectionName, reqPayload)
+
+// Filter too strict? Drop it and retry as pure vector search.
+if len(result.Result) == 0 && useKeywordFilter {
+    delete(reqPayload, "filter")
+    result, _ = q.search(collectionName, reqPayload)
+}
+```
+
 > Filtered searches that return zero documents transparently retry as pure semantic vector search — no dead-ends, no empty answers.
 
 That conditional fallback is the difference between a demo and something you'd let a real user touch.

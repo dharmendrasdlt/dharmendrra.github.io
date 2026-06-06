@@ -44,6 +44,43 @@ That's a complete CRUD surface in five tools. Because each takes the collection 
 {"collection": "learning_todo", "filter": {"Name": "Study MCP"}, "update": {"Status": "Done"}}
 ```
 
+## What a tool actually looks like
+
+A tool is two things: a **declaration** (the contract the LLM discovers via `tools/list`) and a **handler** (the Go function that runs). Here's `query_documents`, declared with its parameters:
+
+```go
+s.AddTool(mcp.NewTool("query_documents",
+    mcp.WithDescription("Query documents from a collection. Filter is an optional JSON object..."),
+    mcp.WithString("collection", mcp.Required(),
+        mcp.Description("Name of the collection. Call list_collections first.")),
+    mcp.WithString("filter", mcp.Description(`Optional JSON filter, e.g. {"Status":"To Do"}`)),
+    mcp.WithNumber("limit", mcp.Description("Max documents to return (default 20)")),
+), h.queryDocuments)
+```
+
+The handler is almost boring — and that's the point. It just maps `{collection, filter, limit}` onto a MongoDB `Find`:
+
+```go
+func (h *Handlers) queryDocuments(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+    collName := req.GetString("collection", "")
+    var filter bson.M
+    json.Unmarshal([]byte(req.GetString("filter", "{}")), &filter)
+
+    cursor, err := h.db().Collection(collName).Find(ctx, filter,
+        options.Find().SetLimit(int64(req.GetInt("limit", 20))))
+    if err != nil {
+        return nil, fmt.Errorf("query: %w", err)
+    }
+    var docs []bson.M
+    cursor.All(ctx, &docs)
+
+    out, _ := json.MarshalIndent(docs, "", "  ")
+    return mcp.NewToolResultText(string(out)), nil
+}
+```
+
+Nothing here knows what a `learning_todo` or a `job_portals` is. The collection is an argument, the filter is arbitrary JSON, and the result is whatever Mongo returns. That's what makes one handler cover every collection you'll ever add.
+
 ## Why "general-purpose" is the whole point
 
 It's tempting to write a tool per use case — `add_todo`, `complete_todo`, `list_jobs`. Don't. That couples the server to today's schema and forces a redeploy every time the data evolves. Five generic verbs over arbitrary collections means the *data* can change freely while the *interface* stays frozen. The LLM figures out the mapping from intent to `collection + filter` at call time.
