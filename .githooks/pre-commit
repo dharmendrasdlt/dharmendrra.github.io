@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Auto-stamp asset content hashes into the HTML before each commit.
+set -euo pipefail
+root="$(git rev-parse --show-toplevel)"
+"$root/scripts/stamp-assets.sh"
+git add "$root/index.html" "$root/blog/index.html" "$root/blog/post.html" 2>/dev/null || true
