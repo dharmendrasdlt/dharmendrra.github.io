@@ -168,8 +168,8 @@ main {
 .hero-content {
     width: 100%;
     display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
-    gap: var(--spacing-2xl);
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: var(--spacing-xl);
     align-items: center;
 }
 
@@ -180,8 +180,15 @@ main {
 /* Hero collage (screenshots montage on the right) */
 .hero-collage {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--spacing-sm);
+    transform: perspective(1900px) rotateY(-24deg) rotateX(7deg) rotateZ(1deg);
+    transform-origin: center center;
+    transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-collage:hover {
+    transform: perspective(1900px) rotateY(-10deg) rotateX(3deg);
 }
 
 .hero-collage__col {
@@ -190,9 +197,9 @@ main {
     gap: var(--spacing-sm);
 }
 
-.hero-collage__col--offset {
-    margin-top: var(--spacing-xl);
-}
+.hero-collage__col:nth-child(1) { margin-top: var(--spacing-2xl); }
+.hero-collage__col:nth-child(2) { margin-top: 0; }
+.hero-collage__col:nth-child(3) { margin-top: var(--spacing-xl); }
 
 .hero-collage img {
     width: 100%;
