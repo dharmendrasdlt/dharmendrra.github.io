@@ -1033,6 +1033,74 @@ main {
     }
 }
 
+/* Writing Section */
+.writing {
+    padding: var(--spacing-2xl) 0;
+    background: var(--color-bg-light);
+}
+
+.writing-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.writing-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: var(--spacing-lg);
+    transition: all var(--transition-base);
+}
+
+.writing-card:hover {
+    border-color: var(--color-primary);
+    box-shadow: 0 10px 28px rgba(26, 115, 232, 0.10);
+    transform: translateY(-3px);
+}
+
+.writing-card__title {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--color-text);
+    margin: 0 0 var(--spacing-sm) 0;
+}
+
+.writing-card:hover .writing-card__title { color: var(--color-primary); }
+
+.writing-card__excerpt {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    margin: 0 0 var(--spacing-md) 0;
+    flex: 1;
+}
+
+.writing-card__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+}
+
+.writing-card__meta .dot { opacity: 0.5; }
+
+.writing-all {
+    display: inline-block;
+    margin-top: var(--spacing-xl);
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--color-primary);
+    transition: all var(--transition-fast);
+}
+
+.writing-all:hover { color: var(--color-accent); transform: translateX(4px); }
+
 /* Contact Section */
 .contact {
     padding: var(--spacing-2xl) 0;

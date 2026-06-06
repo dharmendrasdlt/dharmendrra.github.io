@@ -56,3 +56,28 @@ if ('IntersectionObserver' in window) {
         observer.observe(section);
     });
 }
+
+// Latest writing teaser — pulls the 3 newest posts from the blog manifest
+(function () {
+    var list = document.getElementById('writing-list');
+    if (!list) return;
+    function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+    function fmt(s) { return new Date(s + 'T00:00:00').toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }); }
+    fetch('blog/posts/posts.json').then(function (r) { return r.json(); }).then(function (data) {
+        var posts = (data.posts || []).slice().sort(function (a, b) { return b.date.localeCompare(a.date); }).slice(0, 3);
+        posts.forEach(function (p) {
+            var a = document.createElement('a');
+            a.className = 'writing-card';
+            a.href = 'blog/post.html?slug=' + encodeURIComponent(p.slug);
+            a.innerHTML =
+                '<h3 class="writing-card__title">' + esc(p.title) + '</h3>' +
+                '<p class="writing-card__excerpt">' + esc(p.excerpt || '') + '</p>' +
+                '<div class="writing-card__meta"><span>' + fmt(p.date) + '</span>' +
+                (p.readingTime ? '<span class="dot">·</span><span>' + esc(p.readingTime) + '</span>' : '') + '</div>';
+            list.appendChild(a);
+        });
+    }).catch(function () {
+        var s = document.getElementById('writing');
+        if (s) s.style.display = 'none';
+    });
+})();
