@@ -1,0 +1,52 @@
+{
+  "posts": [
+    {
+      "slug": "pinecone-rag-sse",
+      "title": "Streaming PDF ingestion and retrieval with Pinecone over SSE",
+      "excerpt": "A full-stack Go pipeline: PDF → GridFS → chunk → embed → upsert to Pinecone, then query → search → grounded answer — with live Server-Sent Events progress at every stage.",
+      "date": "2026-05-28",
+      "readingTime": "9 min read",
+      "tags": ["RAG", "Pinecone", "Go", "SSE"]
+    },
+    {
+      "slug": "mongodb-mcp-server",
+      "title": "Exposing MongoDB to any LLM as an MCP server",
+      "excerpt": "A standalone Model Context Protocol server in Go that turns a MongoDB database into five generic CRUD tools — discoverable at runtime by Claude Desktop, Cursor, or your own agent.",
+      "date": "2026-05-10",
+      "readingTime": "7 min read",
+      "tags": ["MCP", "AI Engineering", "Go", "MongoDB"]
+    },
+    {
+      "slug": "react-agent-in-go",
+      "title": "Building a ReAct reasoning agent in Go",
+      "excerpt": "A Reason-plus-Act loop over three tools — PDF search, web search, and an MCP bridge — with a self-describing tool registry and a pluggable Ollama/Claude backend.",
+      "date": "2026-04-22",
+      "readingTime": "8 min read",
+      "tags": ["AI Engineering", "Agents", "Go", "ReAct"]
+    },
+    {
+      "slug": "rag-with-qdrant",
+      "title": "RAG with Qdrant: payload filtering with a semantic fallback",
+      "excerpt": "Pairing a Qdrant payload text filter with dense vector search — and the conditional fallback that stops short, single-token queries from returning nothing.",
+      "date": "2026-04-05",
+      "readingTime": "7 min read",
+      "tags": ["RAG", "Qdrant", "Go", "Search"]
+    },
+    {
+      "slug": "rag-with-chromadb",
+      "title": "RAG with ChromaDB: keyword-sensitive filtering + semantic fallback",
+      "excerpt": "Decoupling MongoDB content from a ChromaDB vector index — and why document-aware routing beats naive cosine similarity on real-world queries.",
+      "date": "2026-03-18",
+      "readingTime": "7 min read",
+      "tags": ["RAG", "ChromaDB", "Go", "Search"]
+    },
+    {
+      "slug": "mongodb-rag",
+      "title": "The simplest RAG: MongoDB as your vector store",
+      "excerpt": "Before you reach for a dedicated vector database, you can ship a working RAG pipeline with just MongoDB, Ollama embeddings, and a two-service split. Here's how.",
+      "date": "2026-03-02",
+      "readingTime": "6 min read",
+      "tags": ["RAG", "MongoDB", "Go", "Beginner"]
+    }
+  ]
+}
