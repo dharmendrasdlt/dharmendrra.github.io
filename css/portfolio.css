@@ -295,23 +295,31 @@ main {
 .hero-meta {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--spacing-md);
+    gap: var(--spacing-xs);
     margin-top: var(--spacing-xl);
     padding-top: var(--spacing-lg);
     border-top: 1px solid var(--color-border);
 }
 
 .hero-meta span {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 500;
     color: var(--color-text-secondary);
-    position: relative;
+    background: var(--color-tag-bg);
+    border: 1px solid var(--color-border);
+    padding: 4px 12px;
+    border-radius: 20px;
+    transition: all var(--transition-fast);
 }
 
-.hero-meta span:not(:last-child)::after {
-    content: '·';
-    margin-left: var(--spacing-md);
-    color: var(--color-border);
+.hero-meta span:hover {
+    transform: translateY(-2px);
+}
+
+.hero-meta span.hero-meta__ai {
+    color: var(--color-primary);
+    background: rgba(26, 115, 232, 0.08);
+    border-color: rgba(26, 115, 232, 0.3);
 }
 
 .btn {
