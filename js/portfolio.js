@@ -106,3 +106,58 @@ if ('IntersectionObserver' in window) {
         if (e.key === 'Escape') setOpen(false);
     });
 })();
+
+// Versioned Project Spotlight — switch v3/v2/v1 panels
+(function () {
+    var root = document.getElementById('agentic-spotlight');
+    if (!root) return;
+    var tabs = root.querySelectorAll('.version-tabs .vtab');
+    var panels = root.querySelectorAll('.vpanel');
+    tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+            var ver = tab.getAttribute('data-ver');
+            tabs.forEach(function (t) {
+                var on = t === tab;
+                t.classList.toggle('is-active', on);
+                t.setAttribute('aria-selected', on ? 'true' : 'false');
+            });
+            panels.forEach(function (p) {
+                p.classList.toggle('is-active', p.getAttribute('data-panel') === ver);
+            });
+        });
+    });
+})();
+
+// Projects — horizontal arrow scroller (arrows appear only when cards overflow)
+(function () {
+    var car = document.querySelector('.projects-carousel');
+    if (!car) return;
+    var grid = car.querySelector('.projects-grid');
+    var prev = car.querySelector('.pc-prev');
+    var next = car.querySelector('.pc-next');
+    if (!grid || !prev || !next) return;
+
+    function step() {
+        var card = grid.querySelector('.project-card');
+        var styles = getComputedStyle(grid);
+        var gap = parseInt(styles.columnGap || styles.gap, 10) || 24;
+        return card ? card.offsetWidth + gap : grid.clientWidth * 0.9;
+    }
+
+    function update() {
+        var overflow = grid.scrollWidth - grid.clientWidth > 4;
+        prev.hidden = !overflow;
+        next.hidden = !overflow;
+        if (overflow) {
+            prev.disabled = grid.scrollLeft <= 2;
+            next.disabled = grid.scrollLeft + grid.clientWidth >= grid.scrollWidth - 2;
+        }
+    }
+
+    prev.addEventListener('click', function () { grid.scrollBy({ left: -step(), behavior: 'smooth' }); });
+    next.addEventListener('click', function () { grid.scrollBy({ left: step(), behavior: 'smooth' }); });
+    grid.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    window.addEventListener('load', update);
+    update();
+})();

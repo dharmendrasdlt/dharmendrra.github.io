@@ -28,7 +28,7 @@
     <meta name="twitter:description" content="Building large-scale distributed messaging platforms — plus hands-on AI agent and RAG projects.">
     <meta name="twitter:image" content="https://dharmendrra.github.io/images/og-cover.png">
 
-    <link rel="stylesheet" href="css/portfolio.css?v=3b97ffed">
+    <link rel="stylesheet" href="css/portfolio.css?v=46efa825">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -397,17 +397,19 @@
                         <h2 class="section-title">Projects</h2>
                         <span class="section-number">05</span>
                     </div>
-                    <div class="projects-grid">
-                        <!-- Agentic AI -->
-                        <a href="https://dharmendrra.github.io/agentic-ai/" class="project-card">
+                    <div class="projects-carousel">
+                        <button type="button" class="pc-arrow pc-prev" aria-label="Scroll to previous projects" hidden>&lsaquo;</button>
+                        <div class="projects-grid">
+                        <!-- Agentic AI (Python) -->
+                        <a href="https://dharmendrra.github.io/agentic-ai-py/" class="project-card">
                             <div class="project-image">
-                                <img src="images/agentic-ai.png" alt="Agentic AI Architecture">
+                                <img src="images/agentic-v3-chat.png" alt="Agentic AI (Python) conversational UI">
                             </div>
                             <div class="project-content">
                                 <div class="project-header">
-                                    <h3>Agentic AI</h3>
+                                    <h3>Agentic AI (Python)</h3>
                                 </div>
-                                <p class="project-description">A Go-based agentic AI system using a Reasoning + Acting loop, tool-calling, and MCP integration. Combines Tavily search and Ollama-backed local models for autonomous multi-step task execution.</p>
+                                <p class="project-description">A full Python rebuild of the agent — FastAPI services (agent · retrieval · MCP) behind a python.org-styled UI. Conversational memory, native PDF retrieval over Pinecone, live web search with clickable citations, and clarify-back.</p>
                                 <div class="project-link">Explore →</div>
                             </div>
                         </a>
@@ -422,6 +424,20 @@
                                     <h3>Omni-RAG</h3>
                                 </div>
                                 <p class="project-description">A multi-backend RAG system spanning ChromaDB, Qdrant, and Pinecone with keyword-sensitive filtering and semantic fallback — resolving the short-query vector bias that breaks out-of-the-box RAG on real-world data.</p>
+                                <div class="project-link">Explore →</div>
+                            </div>
+                        </a>
+
+                        <!-- Agentic AI -->
+                        <a href="https://dharmendrra.github.io/agentic-ai/" class="project-card">
+                            <div class="project-image">
+                                <img src="images/agentic-ai.png" alt="Agentic AI Architecture">
+                            </div>
+                            <div class="project-content">
+                                <div class="project-header">
+                                    <h3>Agentic AI</h3>
+                                </div>
+                                <p class="project-description">A Go-based agentic AI system using a Reasoning + Acting loop, tool-calling, and MCP integration. Combines Tavily search and Ollama-backed local models for autonomous multi-step task execution.</p>
                                 <div class="project-link">Explore →</div>
                             </div>
                         </a>
@@ -448,6 +464,77 @@
                                 <div class="project-link">Explore →</div>
                             </div>
                         </a>
+                        </div>
+                        <button type="button" class="pc-arrow pc-next" aria-label="Scroll to next projects" hidden>&rsaquo;</button>
+                    </div>
+
+                    <!-- Project Spotlight: Agentic AI (versioned: v3 Python · v2/v1 Go) -->
+                    <div class="spotlight spotlight--versioned" id="agentic-spotlight">
+                        <div class="spotlight-eyebrow-row">
+                            <span class="spotlight-eyebrow">Project Spotlight</span>
+                            <div class="version-tabs" role="tablist" aria-label="Agentic AI versions">
+                                <button class="vtab is-active" data-ver="v3" role="tab" aria-selected="true"><span>v3</span></button>
+                                <button class="vtab" data-ver="v2" role="tab" aria-selected="false"><span>v2</span></button>
+                                <button class="vtab" data-ver="v1" role="tab" aria-selected="false"><span>v1</span></button>
+                            </div>
+                        </div>
+
+                        <!-- v3 — Python rebuild (default) -->
+                        <div class="vpanel is-active" data-panel="v3" role="tabpanel">
+                            <div class="spotlight-head">
+                                <h3 class="spotlight-title">Agentic AI (Python) — Reasoning + Acting engine</h3>
+                                <p class="spotlight-lead">A full Python rebuild of the agent: FastAPI services (agent · retrieval · MCP) behind a python.org-styled UI. Same Reasoning + Acting loop — conversational memory, native PDF retrieval over Pinecone, live web search with clickable citations, and clarify-back — re-implemented end-to-end in Python.</p>
+                            </div>
+                            <div class="spotlight-shots">
+                                <figure class="spotlight-figure">
+                                    <img src="images/agentic-v3-chat.png" alt="Agentic AI Python — conversational chat UI with source toggles and python.org theme">
+                                    <figcaption>Conversational UI — memory, source toggles, python.org theme</figcaption>
+                                </figure>
+                                <figure class="spotlight-figure">
+                                    <img src="images/agentic-v3-web.png" alt="Agentic AI Python — answer with clickable, persisted web citations">
+                                    <figcaption>Web answer — clickable, persisted citations</figcaption>
+                                </figure>
+                            </div>
+                            <a href="https://dharmendrra.github.io/agentic-ai-py/" class="spotlight-cta">Visit Agentic AI (Python) →</a>
+                        </div>
+
+                        <!-- v2 — Go, Your Library Knowledge Base -->
+                        <div class="vpanel" data-panel="v2" role="tabpanel">
+                            <div class="spotlight-head">
+                                <h3 class="spotlight-title">Agentic AI (Go) v2 — Your Library Knowledge Base</h3>
+                                <p class="spotlight-lead">The agent grew a memory and a library: conversational retrieval with per-source provenance, native PDF search over Pinecone with a books catalog and clarify-back, live web search with clickable citations that persist, and PDF ingestion — all behind Web / My Library toggles.</p>
+                            </div>
+                            <div class="spotlight-shots">
+                                <figure class="spotlight-figure">
+                                    <img src="images/agentic-v2-library.png" alt="Agentic AI Go v2 — library-grounded answer citing My Library PDFs">
+                                    <figcaption>Library-grounded — answers cite your PDFs (My Library)</figcaption>
+                                </figure>
+                                <figure class="spotlight-figure">
+                                    <img src="images/agentic-v2-web.png" alt="Agentic AI Go v2 — web answer with clickable, persisted citations">
+                                    <figcaption>Web answer — clickable, persisted citations</figcaption>
+                                </figure>
+                            </div>
+                            <a href="https://dharmendrra.github.io/agentic-ai/v2/" class="spotlight-cta">View Agentic AI v2 →</a>
+                        </div>
+
+                        <!-- v1 — Go, original Reasoning + Acting engine -->
+                        <div class="vpanel" data-panel="v1" role="tabpanel">
+                            <div class="spotlight-head">
+                                <h3 class="spotlight-title">Agentic AI (Go) v1 — Reasoning + Acting engine</h3>
+                                <p class="spotlight-lead">A Go-based agent that thinks step-by-step: a Reasoning + Acting loop interleaves thinking with tool calls across PDF retrieval and live web search, grounding multi-step answers in real sources — built with MCP tooling, Tavily search, and Ollama-backed local models.</p>
+                            </div>
+                            <div class="spotlight-shots">
+                                <figure class="spotlight-figure">
+                                    <img src="images/agentic-ai-clarify.png" alt="Agentic AI recognizes a vague query and asks clarifying questions instead of hallucinating">
+                                    <figcaption>Sound judgment — asks for context on vague queries instead of hallucinating</figcaption>
+                                </figure>
+                                <figure class="spotlight-figure">
+                                    <img src="images/agentic-ai-reasoning.png" alt="Agentic AI Reasoning + Acting engine — multi-step reasoned answer grounded in PDF and web sources">
+                                    <figcaption>Capability — multi-step Reasoning + Acting grounded via PDF + web tools</figcaption>
+                                </figure>
+                            </div>
+                            <a href="https://dharmendrra.github.io/agentic-ai/v1/" class="spotlight-cta">View Agentic AI v1 →</a>
+                        </div>
                     </div>
 
                     <!-- Project Spotlight: Omni-RAG end-to-end RAG -->
@@ -468,26 +555,6 @@
                             </figure>
                         </div>
                         <a href="https://dharmendrra.github.io/Omni-RAG/" class="spotlight-cta">View Omni-RAG →</a>
-                    </div>
-
-                    <!-- Project Spotlight: Agentic AI -->
-                    <div class="spotlight">
-                        <div class="spotlight-head">
-                            <span class="spotlight-eyebrow">Project Spotlight</span>
-                            <h3 class="spotlight-title">Agentic AI — Reasoning + Acting engine</h3>
-                            <p class="spotlight-lead">A Go-based agent that thinks step-by-step: a Reasoning + Acting loop interleaves thinking with tool calls across PDF retrieval and live web search, grounding multi-step answers in real sources — built with MCP tooling, Tavily search, and Ollama-backed local models.</p>
-                        </div>
-                        <div class="spotlight-shots">
-                            <figure class="spotlight-figure">
-                                <img src="images/agentic-ai-clarify.png" alt="Agentic AI recognizes a vague query and asks clarifying questions instead of hallucinating">
-                                <figcaption>Sound judgment — asks for context on vague queries instead of hallucinating</figcaption>
-                            </figure>
-                            <figure class="spotlight-figure">
-                                <img src="images/agentic-ai-reasoning.png" alt="Agentic AI Reasoning + Acting engine — multi-step reasoned answer grounded in PDF and web sources">
-                                <figcaption>Capability — multi-step Reasoning + Acting grounded via PDF + web tools</figcaption>
-                            </figure>
-                        </div>
-                        <a href="https://dharmendrra.github.io/agentic-ai/" class="spotlight-cta">View Agentic AI →</a>
                     </div>
                 </div>
             </section>
@@ -555,7 +622,7 @@
         </footer>
     </div>
 
-    <script src="js/portfolio.js?v=f9b7183e"></script>
+    <script src="js/portfolio.js?v=731fe8a4"></script>
     <script src="js/lightbox.js?v=12e3c63c"></script>
 </body>
 </html>

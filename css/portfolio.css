@@ -890,11 +890,60 @@ main {
     padding: var(--spacing-2xl) 0;
 }
 
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: var(--spacing-xl);
+.projects-carousel {
+    position: relative;
 }
+
+.projects-grid {
+    display: flex;
+    gap: var(--spacing-xl);
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 2px;
+}
+
+.projects-grid::-webkit-scrollbar { display: none; }
+
+/* each card a fixed width so the row scrolls horizontally when they overflow */
+.projects-grid > .project-card {
+    flex: 0 0 340px;
+    scroll-snap-align: start;
+}
+
+.pc-arrow {
+    position: absolute;
+    top: 42%;
+    transform: translateY(-50%);
+    z-index: 3;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--color-bg);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14);
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background var(--transition-fast), color var(--transition-fast),
+        border-color var(--transition-fast), opacity var(--transition-fast);
+}
+
+.pc-arrow:hover {
+    background: var(--color-primary);
+    color: #fff;
+    border-color: var(--color-primary);
+}
+
+.pc-prev { left: -6px; }
+.pc-next { right: -6px; }
+.pc-arrow[hidden] { display: none; }
+.pc-arrow:disabled { opacity: 0.3; cursor: default; box-shadow: none; }
 
 .project-card {
     display: flex;
@@ -1085,11 +1134,73 @@ main {
     transform: translateX(4px);
 }
 
+/* Versioned spotlight — tilted v3/v2/v1 tabs next to the eyebrow */
+.spotlight-eyebrow-row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+    margin-bottom: var(--spacing-lg);
+}
+
+.version-tabs {
+    display: inline-flex;
+    align-items: stretch;
+}
+
+.vtab {
+    transform: skewX(-22deg);
+    padding: 0.32rem 1.05rem;
+    border: 1px solid var(--color-border);
+    border-right: none;
+    background: #f1f3f4;
+    color: var(--color-text-secondary);
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.vtab:first-child { border-radius: 7px 0 0 7px; }
+.vtab:last-child { border-right: 1px solid var(--color-border); border-radius: 0 7px 7px 0; }
+
+/* counter-skew the label so the text stays upright inside the slanted tab */
+.vtab > span { display: inline-block; transform: skewX(22deg); }
+
+.vtab:hover:not(.is-active) {
+    background: #e4e9f2;
+    color: var(--color-text);
+}
+
+.vtab.is-active {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(26, 115, 232, 0.28);
+}
+
+.vpanel { display: none; }
+.vpanel.is-active { display: block; animation: vpanel-fade 0.25s ease; }
+
+@keyframes vpanel-fade {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
 @media (max-width: 768px) {
     .projects-grid {
-        grid-template-columns: 1fr;
         gap: var(--spacing-lg);
     }
+
+    /* cards take most of the viewport with the next one peeking */
+    .projects-grid > .project-card {
+        flex-basis: 84%;
+    }
+
+    .pc-prev { left: 2px; }
+    .pc-next { right: 2px; }
 
     .projects {
         padding: var(--spacing-xl) 0;
