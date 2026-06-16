@@ -23,3 +23,5 @@ stamp js/portfolio.js   index.html
 stamp js/lightbox.js    index.html
 stamp blog/blog.css     blog/index.html blog/post.html
 stamp blog/blog.js      blog/index.html blog/post.html
+stamp css/resume.css    resume/index.html my-resume/index.html
+stamp js/resume.js      resume/index.html my-resume/index.html
