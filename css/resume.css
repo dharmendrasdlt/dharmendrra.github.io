@@ -1,0 +1,158 @@
+/* ===================================================================
+ * Resume viewer
+ * Renders the .docx faithfully (via docx-preview) on a calm page,
+ * with a sticky bar carrying a download button.
+ * ================================================================ */
+
+:root {
+    --primary: #1a73e8;
+    --accent: #ea4335;
+    --text: #202124;
+    --text-secondary: #5f6368;
+    --border: #dadce0;
+    --page-bg: #e8eaed;
+    --font-sans: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-sans);
+    color: var(--text);
+    background: var(--page-bg);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Sticky top bar */
+.resume-bar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+}
+
+.resume-bar__inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0.9rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.resume-bar__logo {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.resume-bar__logo:hover {
+    color: var(--primary);
+}
+
+.resume-bar__nav {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.resume-bar__nav > a {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.resume-bar__nav > a:hover {
+    color: var(--primary);
+}
+
+/* Download button */
+.resume-bar__download {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    background: var(--primary);
+    color: #fff !important;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.resume-bar__download:hover {
+    background: #1666d2;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(26, 115, 232, 0.28);
+}
+
+.resume-bar__download svg {
+    flex: none;
+}
+
+/* Main viewport */
+.resume-main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+}
+
+.resume-status {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    padding: 3rem 1rem;
+}
+
+.resume-status--error {
+    color: var(--accent);
+}
+
+/* docx-preview output: each page renders as a white "sheet".
+ * Give those sheets a soft shadow and center them. */
+.resume-doc .docx-wrapper {
+    background: transparent;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.resume-doc .docx-wrapper > section.docx {
+    background: #fff;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+    .resume-bar__nav {
+        gap: 0.85rem;
+    }
+
+    .resume-bar__nav > a:not(.resume-bar__download) {
+        display: none;
+    }
+
+    .resume-main {
+        padding: 1rem 0.75rem 3rem;
+    }
+
+    /* The sheet itself is scaled to fit by resume.js (fitToWidth); just
+     * tighten the spacing between pages here. */
+    .resume-doc .docx-wrapper {
+        gap: 1rem;
+    }
+}
