@@ -33,4 +33,4 @@ Run it locally by serving the repo root with any static server, e.g. `python3 -m
 
 - 📧 [dharmendra.4real@gmail.com](mailto:dharmendra.4real@gmail.com)
 - 💼 [LinkedIn](https://linkedin.com/in/dharmendra-yadav-20b9a017)
-- 🐙 [GitHub](https://github.com/dharmendrra)
+- 🐙 [GitHub](https://github.com/dharmendrasdlt)
